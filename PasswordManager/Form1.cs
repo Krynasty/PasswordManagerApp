@@ -15,10 +15,14 @@ namespace PasswordManager
         int mPosX;
         int mPosY;
 
+        List<Panel> listpanel = new List<Panel>();
+        List<Form> listform = new List<Form>();
+
         public Home()
         {
             InitializeComponent();
         }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -48,7 +52,6 @@ namespace PasswordManager
         private void topPanel_MouseUp(object sender, MouseEventArgs e)  //  static screen, this is a non-moving state. 
         {
             moveScreen = 0;
-
         }
 
         private void topPanel_MouseMove(object sender, MouseEventArgs e)    //  moving the screen and updating the position on the screen.
@@ -82,6 +85,40 @@ namespace PasswordManager
             label1.ForeColor = Color.White;
             label1.BackColor = Color.DodgerBlue;
         }
+
+        private void sidePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        Form2 f2;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (f2 == null)
+            {
+                f2 = new Form2();
+                f2.MdiParent = this;
+                f2.FormClosed+=f2_FormClosed;
+                f2.Show();
+            }
+            else
+            {
+                f2.Activate();
+            }
+        }
+
+        void f2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            f2 = null;
+            // throw new not implemented exception();
+        }
+
+
+        private void ContentHolder_Paint(object sender, PaintEventArgs e)
+        {
+           // listform.Add(mPage);
+        }
+
 
     }
 }
